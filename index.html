@@ -1,82 +1,75 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoa và Trái Tim</title>
     <style>
         body {
-            background-color: black;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
             overflow: hidden;
             position: relative;
+        }
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(black, #222);
         }
         .stars {
             position: absolute;
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background: url('https://i.imgur.com/U3x7JH7.png'); /* Ảnh chấm sao */
+            animation: twinkle 2s infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
         }
         .flower {
-            width: 100px;
-            height: 100px;
-            background: url('https://i.imgur.com/NyZvnPR.png') no-repeat center/cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 1s ease;
-        }
-        .water-can {
-            width: 80px;
-            height: 80px;
-            background: url('https://i.imgur.com/Y5VnI6G.png') no-repeat center/cover;
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%) rotate(-20deg);
-            cursor: pointer;
+            width: 150px;
+            height: 150px;
+            transition: transform 1s;
         }
         .heart {
-            width: 120px;
-            height: 120px;
-            background: url('https://i.imgur.com/OE5KxjK.png') no-repeat center/cover;
+            display: none;
+            font-size: 24px;
+            color: pink;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: all 1s ease;
-        }
-        .text {
-            position: absolute;
-            top: 65%;
-            left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 24px;
-            color: pink;
-            font-weight: bold;
-            opacity: 0;
-            transition: all 1s ease;
+        }
+        .watering-can {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            cursor: pointer;
+            width: 100px;
         }
     </style>
 </head>
 <body>
+    <div class="background"></div>
     <div class="stars"></div>
-    <div class="flower" id="flower"></div>
-    <div class="heart" id="heart"></div>
-    <div class="text" id="text">Nguyễn Thị Xuân Linh</div>
-    <div class="water-can" id="waterCan"></div>
-    
+    <img src="https://i.imgur.com/D6Jq4DP.png" class="flower" id="flower"> <!-- Ảnh hoa -->
+    <img src="https://i.imgur.com/XX4l2EY.png" class="watering-can" id="watering-can"> <!-- Ảnh bình tưới -->
+    <div class="heart" id="heart">❤️ Nguyễn Thị Xuân Linh ❤️</div>
     <script>
-        document.getElementById("waterCan").addEventListener("click", function() {
-            document.getElementById("flower").style.opacity = "0";
-            document.getElementById("heart").style.transform = "translate(-50%, -50%) scale(1)";
-            document.getElementById("text").style.opacity = "1";
+        document.getElementById("watering-can").addEventListener("click", function() {
+            let flower = document.getElementById("flower");
+            let heart = document.getElementById("heart");
+            flower.style.transform = "scale(1.2)";
+            setTimeout(() => {
+                heart.style.display = "block";
+            }, 1000);
         });
     </script>
 </body>
