@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,70 +7,63 @@
     <style>
         body {
             margin: 0;
+            overflow: hidden;
+            background: black;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: black;
-            overflow: hidden;
+        }
+        .container {
             position: relative;
+            width: 300px;
+            height: 400px;
         }
-        .background {
+        .flower, .heart {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(black, #222);
-        }
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('https://i.imgur.com/U3x7JH7.png'); /* Ảnh chấm sao */
-            animation: twinkle 2s infinite;
-        }
-        @keyframes twinkle {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
-        .flower {
-            width: 150px;
-            height: 150px;
-            transition: transform 1s;
-        }
-        .heart {
-            display: none;
-            font-size: 24px;
-            color: pink;
-            position: absolute;
-            top: 50%;
+            width: 100px;
+            height: 100px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
+            transition: opacity 1s ease-in-out;
+        }
+        .flower { top: 100px; }
+        .heart {
+            top: 90px;
+            opacity: 0;
         }
         .watering-can {
             position: absolute;
+            width: 120px;
+            height: 120px;
+            left: 50%;
             top: 20px;
-            left: 50px;
+            transform: translateX(-50%) rotate(-20deg);
             cursor: pointer;
-            width: 100px;
+        }
+        .name {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: pink;
+            font-size: 24px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="stars"></div>
-    <img src="https://i.imgur.com/D6Jq4DP.png" class="flower" id="flower"> <!-- Ảnh hoa -->
-    <img src="https://i.imgur.com/XX4l2EY.png" class="watering-can" id="watering-can"> <!-- Ảnh bình tưới -->
-    <div class="heart" id="heart">❤️ Nguyễn Thị Xuân Linh ❤️</div>
+    <div class="container">
+        <img src="flower.png" alt="Bông hoa" class="flower" id="flower">
+        <img src="heart.png" alt="Trái tim" class="heart" id="heart">
+        <img src="watering-can.png" alt="Bình tưới" class="watering-can" onclick="waterFlower()">
+        <div class="name">Nguyễn Thị Xuân Linh</div>
+    </div>
     <script>
-        document.getElementById("watering-can").addEventListener("click", function() {
-            let flower = document.getElementById("flower");
-            let heart = document.getElementById("heart");
-            flower.style.transform = "scale(1.2)";
-            setTimeout(() => {
-                heart.style.display = "block";
-            }, 1000);
-        });
+        function waterFlower() {
+            document.getElementById('flower').style.opacity = '0';
+            document.getElementById('heart').style.opacity = '1';
+        }
     </script>
 </body>
 </html>
